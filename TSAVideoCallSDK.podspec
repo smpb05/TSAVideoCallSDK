@@ -11,7 +11,6 @@ Pod::Spec.new do |spec|
   spec.swift_versions = ['5.0']
   spec.ios.deployment_target = '11.0'
   spec.source_files = 'TSAVideoCallSDK/**/*.{swift}'
-  spec.ios.resource_bundle = { 'TSAVideoCallSDK' => 'TSAVideoCallResources/**/*.xcassets' }
   spec.static_framework = true
   spec.dependency 'WebRTC'
   spec.dependency 'Starscream', '~> 4.0.0'
