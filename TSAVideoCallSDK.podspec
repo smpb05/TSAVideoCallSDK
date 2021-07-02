@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "hhttps://github.com/smpb05/TSAVideoCallSDK"
   spec.license      = "MIT"
   spec.author             = { "Smartex" => "nurgul.aisariyeva@smartex.kz" } 
-  spec.source       = { :git => "https://github.com/smpb05/TSAVideoCallSDK.git", :branch => 'master' }
+  spec.source       = { :git => "https://github.com/smpb05/TSAVideoCallSDK.git", :branch => 'main' }
   spec.swift_versions = ['5.0']
   spec.ios.deployment_target = '11.0'
   spec.source_files = 'TSAVideoCallSDK/**/*.{swift}'
