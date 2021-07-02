@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
   spec.name         = "TSAVideoCallSDK"
   spec.version      = "0.0.1"
   spec.summary      = "TSAVideoCall SDK for video conference."
-  spec.homepage     = "hhttps://github.com/smpb05/TSAVideoCallSDK"
+  spec.homepage     = "https://github.com/smpb05/TSAVideoCallSDK"
   spec.license      = "MIT"
   spec.author             = { "Smartex" => "nurgul.aisariyeva@smartex.kz" } 
   spec.source       = { :git => "https://github.com/smpb05/TSAVideoCallSDK.git", :branch => 'main' }
