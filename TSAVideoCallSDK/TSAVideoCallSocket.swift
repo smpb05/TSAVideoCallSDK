@@ -54,7 +54,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     
     weak var delegate: TSAVideoCallSocketDelegate?
     
-    init(apiUrl: String, roomId: NSNumber) {
+    public init(apiUrl: String, roomId: NSNumber) {
         self.apiUrl = apiUrl
         self.roomId = roomId
         super.init()
