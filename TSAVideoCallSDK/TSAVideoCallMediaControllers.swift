@@ -17,7 +17,7 @@ class TSAMediaControllersView: UIView {
    
    lazy var micButton: UIImageView = {
        let micButton = UIImageView(frame: CGRect(x: 8, y: 8, width: 32, height: 32))
-      // micButton.image = UIImage(named: "outline_mic_none_white_20pt")
+       micButton.image = UIImage(named: "outline_mic_none_white_20pt")
        micButton.tintColor = .white
        return micButton
    }()
@@ -34,7 +34,7 @@ class TSAMediaControllersView: UIView {
    
    lazy var videoButton: UIImageView = {
        let videoButton = UIImageView(frame: CGRect(x: 68, y: 8, width: 32, height: 32))
-      // videoButton.image = UIImage(named: "outline_videocam_white_20pt")
+       videoButton.image = UIImage(named: "outline_videocam_white_20pt")
        videoButton.tintColor = .white
        return videoButton
    }()
@@ -50,7 +50,7 @@ class TSAMediaControllersView: UIView {
    
    lazy var switchCameraButton: UIImageView = {
        let switchCameraButton = UIImageView(frame: CGRect(x: 128, y: 8, width: 32, height: 32))
-     //  switchCameraButton.image = UIImage(named: "outline_flip_camera_ios_white_20pt")
+       switchCameraButton.image = UIImage(named: "outline_flip_camera_ios_white_20pt")
        switchCameraButton.tintColor = .white
        return switchCameraButton
    }()
@@ -69,7 +69,7 @@ class TSAMediaControllersView: UIView {
    
    lazy var hangupButton: UIImageView = {
        let hangupButton = UIImageView(frame: CGRect(x: 200, y: 8, width: 32, height: 32))
-     //  hangupButton.image = UIImage(named: "outline_call_end_white_20pt")
+       hangupButton.image = UIImage(named: "outline_call_end_white_20pt")
        hangupButton.tintColor = .white
        return hangupButton
    }()
@@ -158,18 +158,18 @@ class TSAMediaControllersView: UIView {
    }
    
    public func setMicOff(){
-      // micButton.image = UIImage(named: "outline_mic_off_white_20pt")
+       micButton.image = UIImage(named: "outline_mic_off_white_20pt")
    }
    
    public func setMicOn(){
-      // micButton.image = UIImage(named: "outline_mic_none_white_20pt")
+        micButton.image = UIImage(named: "outline_mic_none_white_20pt")
    }
    
    public func setVideoOff(){
-       //videoButton.image = UIImage(named: "outline_videocam_off_white_20pt")
+        videoButton.image = UIImage(named: "outline_videocam_off_white_20pt")
    }
    
    public func setVideoOn(){
-       //videoButton.image = UIImage(named: "outline_videocam_white_20pt")
+        videoButton.image = UIImage(named: "outline_videocam_white_20pt")
    }
 }
