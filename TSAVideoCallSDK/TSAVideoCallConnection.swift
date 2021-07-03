@@ -9,8 +9,8 @@ import Foundation
 import WebRTC
 
 public class TSAVideoCallConnection: NSObject {
-    var handleId: NSNumber?
-    var connection: RTCPeerConnection?
-    var videoTrack: RTCVideoTrack?
-    var videoView: RTCEAGLVideoView?
+    public var handleId: NSNumber?
+    public var connection: RTCPeerConnection?
+    public var videoTrack: RTCVideoTrack?
+    public var videoView: RTCEAGLVideoView?
 }
