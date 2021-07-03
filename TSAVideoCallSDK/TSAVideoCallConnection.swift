@@ -8,7 +8,7 @@
 import Foundation
 import WebRTC
 
-class TSAVideoCallConnection: NSObject {
+public class TSAVideoCallConnection: NSObject {
     var handleId: NSNumber?
     var connection: RTCPeerConnection?
     var videoTrack: RTCVideoTrack?
