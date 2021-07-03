@@ -34,7 +34,7 @@ private let janus = "janus"
 private let janusData = "data"
 
 
-class TSAVideoCallSocket: NSObject, WebSocketDelegate{
+public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     
     var apiUrl: String
     var roomId: NSNumber
@@ -72,7 +72,7 @@ class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     }
     
     
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
             case .disconnected(let reason, let code):
                 isConnected = false
