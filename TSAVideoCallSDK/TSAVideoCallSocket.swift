@@ -52,7 +52,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     
     var isConnected = false
     
-    weak var delegate: TSAVideoCallSocketDelegate?
+    public weak var delegate: TSAVideoCallSocketDelegate?
     
     public init(apiUrl: String, roomId: NSNumber) {
         self.apiUrl = apiUrl
@@ -225,7 +225,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: attachMessage as AnyObject))
     }
     
-    func publisherCreateOffer(_ handleId: NSNumber?, sdp: RTCSessionDescription?) {
+   public func publisherCreateOffer(_ handleId: NSNumber?, sdp: RTCSessionDescription?) {
         let transaction = randomString(withLength: 12)
         let publish = [
             "request": "configure",
@@ -288,7 +288,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: joinMessage as AnyObject))
     }
     
-    func unpublish(handleId: NSNumber?){
+    public func unpublish(handleId: NSNumber?){
         let transaction = randomString(withLength: 12)
         let videoCallTransaction = TSAVideoCallTransaction()
         videoCallTransaction.tid = transaction
@@ -388,7 +388,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: message as AnyObject))
     }
     
-    func subscriberCreateAnswer(_ handleId: NSNumber?, sdp: RTCSessionDescription?) {
+    public func subscriberCreateAnswer(_ handleId: NSNumber?, sdp: RTCSessionDescription?) {
         let transaction = randomString(withLength: 12)
 
         let body = [
@@ -447,7 +447,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: message as AnyObject))
     }
     
-    func configureMedia(handleId: NSNumber?, audio: Bool, video: Bool) {
+    public func configureMedia(handleId: NSNumber?, audio: Bool, video: Bool) {
         let transaction = randomString(withLength: 12)
         let videoCallTransaction = TSAVideoCallTransaction()
         videoCallTransaction.tid = transaction
@@ -487,7 +487,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         self.state = state
     }
     
-    func trickleCandidate(_ handleId: NSNumber?, candidate: RTCIceCandidate?) {
+    public func trickleCandidate(_ handleId: NSNumber?, candidate: RTCIceCandidate?) {
         var candidateDict: [String : Any]? = nil
         if let sdp = candidate?.sdp, let sdpMid = candidate?.sdpMid {
             candidateDict = [
@@ -514,7 +514,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: trickleMessage as AnyObject))
     }
     
-    func trickleCandidateComplete(_ handleId: NSNumber?) {
+    public func trickleCandidateComplete(_ handleId: NSNumber?) {
         let candidateDict = [
             "completed": NSNumber(value: true)
         ]
@@ -531,7 +531,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: trickleMessage as AnyObject))
     }
     
-    @objc func tryToConnect(){
+    @objc public func tryToConnect(){
         socket.connect()
     }
     
