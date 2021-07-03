@@ -20,7 +20,7 @@ enum SignalingChannelState : Int {
     case signalingChannelStateError
 }
 
-protocol TSAVideoCallSocketDelegate: NSObjectProtocol {
+public protocol TSAVideoCallSocketDelegate: NSObjectProtocol {
 
     func onPublisherJoined(_ handleId: NSNumber?)
     func onPublisherRemoteJsep(_ handleId: NSNumber?, dict jsep: [AnyHashable : Any]?)
