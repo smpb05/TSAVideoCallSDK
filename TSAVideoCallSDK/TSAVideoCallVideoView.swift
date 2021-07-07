@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import WebRTC
 
-class TSAVideoCallView: UIView{
+public class TSAVideoCallView: UIView{
     
     var videoSize: CGSize = CGSize()
     let lowLevel: [UIImage] = [UIImage(named: "mic_0")!, UIImage(named: "mic_1")!]
