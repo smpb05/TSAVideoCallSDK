@@ -11,16 +11,16 @@ import WebRTC
 private let mRTCSessionDescriptionTypeKey = "type"
 private let mRTCSessionDescriptionSdpKey = "sdp"
 
-extension RTCSessionDescription {
+public extension RTCSessionDescription {
     
-    convenience init?(fromJSONDictionary dictionary: [AnyHashable : Any]?) {
+     convenience init?(fromJSONDictionary dictionary: [AnyHashable : Any]?) {
         let typeString = dictionary?[mRTCSessionDescriptionTypeKey] as! String
         let type = RTCSessionDescription.self.type(for: typeString)
         let sdp = dictionary?[mRTCSessionDescriptionSdpKey] as! String
         self.init(type: type, sdp: sdp)
     }
 
-    func jsonData() -> Data? {
+     func jsonData() -> Data? {
         let type = RTCSessionDescription.string(for: self.type)
         let json = [
             mRTCSessionDescriptionTypeKey: type,
