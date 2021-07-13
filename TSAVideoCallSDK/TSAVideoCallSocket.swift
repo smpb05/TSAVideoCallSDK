@@ -29,6 +29,7 @@ public protocol TSAVideoCallSocketDelegate: NSObjectProtocol {
     func onStoppedTalking(_ handleId: NSNumber?, dict pluginData: [AnyHashable: Any]?)
     func onError(_ error: TSAVideoCallError)
     func onSocketDisconnected(code: NSNumber, message: String?)
+    func onUnpublished(_ handleId: NSNumber?)
 }
 
 private let janus = "janus"
@@ -146,9 +147,19 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
                             }
                         }
                         
+                        if (plugin["unpublished"] != nil) {
+                            if plugin["unpublished"] as! String == "ok" {
+                                self.delegate?.onUnpublished(handle?.handleId)
+                            }else{
+                                let jHandle = feedDict[plugin["unpublished"] as! NSNumber]
+                                self.delegate?.onUnpublished(jHandle?.handleId)
+                            }
+                        }
+                        
                         if(json["jsep"] != nil){
                             handle?.onRemoteJsep!(handle, json["jsep"] as? [AnyHashable: Any])
                         }
+                        
                         
                     }else if (janus == "detached") {
                         
