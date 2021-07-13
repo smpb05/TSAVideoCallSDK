@@ -21,13 +21,14 @@ enum SignalingChannelState : Int {
 }
 
 public protocol TSAVideoCallSocketDelegate: NSObjectProtocol {
-
     func onPublisherJoined(_ handleId: NSNumber?)
     func onPublisherRemoteJsep(_ handleId: NSNumber?, dict jsep: [AnyHashable : Any]?)
     func subscriberHandleRemoteJsep(_ handleId: NSNumber?, dict jsep: [AnyHashable : Any]?)
     func onLeaving(_ handleId: NSNumber?)
     func onTalking(_ handleId: NSNumber?, dict pluginData: [AnyHashable: Any]?)
     func onStoppedTalking(_ handleId: NSNumber?, dict pluginData: [AnyHashable: Any]?)
+    func onError(_ error: TSAVideoCallError)
+    func onSocketDisconnected(code: NSNumber, message: String?)
 }
 
 private let janus = "janus"
@@ -76,6 +77,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         switch event {
             case .disconnected(let reason, let code):
                 isConnected = false
+                self.delegate?.onSocketDisconnected(code: NSNumber(value: code), message: reason)
                 print("websocket is disconnected: \(reason) with code: \(code)")
             case .text(let string):
                 let json = string.toJSON() as! [String: Any]
@@ -101,8 +103,9 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
                         transactionsDict.removeValue(forKey: transaction)
                     }else{
                         print("onError \(json)")
-                        
                     }
+                    let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.MediaServerError, errorCode:  TSAVideoCallError.ErrorCode.MediaServerError, message: json.description)
+                    self.delegate?.onError(error)
                 }else if janus == "ack" {
                     print("ack")
                 }else {
@@ -185,6 +188,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             self.publisherAttachPlugin()
         }
         videoCallTransaction.error = { data in
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.SessionError, errorCode: TSAVideoCallError.ErrorCode.SessionFailed, message: data?.description)
+            self.delegate?.onError(error)
         }
         transactionsDict![transaction]  = videoCallTransaction
         let createMessage = [
@@ -212,7 +217,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             self.publisherJoinRoom(handle)
         }
         videoCallTransaction.error = { data in
-            
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.PublisherError, errorCode: TSAVideoCallError.ErrorCode.PublisherPluginNotAttached, message: data?.description)
+            self.delegate?.onError(error)
         }
         transactionsDict![transaction] = videoCallTransaction
         let attachMessage = [
@@ -263,7 +269,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             
         }
         videoCallTransaction.error = { data in
-            
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.PublisherError, errorCode: TSAVideoCallError.ErrorCode.PublisherFailedToJoinRoom, message: data?.description)
+            self.delegate?.onError(error)
         }
         transactionsDict![transaction] = videoCallTransaction
         let body = [
@@ -296,7 +303,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     
         }
         videoCallTransaction.error = { data in
-     
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.PublisherError, errorCode: TSAVideoCallError.ErrorCode.PublisherFailedToUnpublish, message: data?.description)
+            self.delegate?.onError(error)
         }
         let body = [
             "request": "unpublish"
@@ -343,6 +351,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             self.subscriberJoinRoom(handle)
         }
         videoCallTransaction.error = { data in
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.SubscriberError, errorCode: TSAVideoCallError.ErrorCode.SubscriberFailedToCreateHandle, message: data?.description)
+            self.delegate?.onError(error)
         }
         
         transactionsDict![transaction] = videoCallTransaction
@@ -364,6 +374,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         videoCallTransaction.success = { data in
         }
         videoCallTransaction.error = { data in
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.SubscriberError, errorCode: TSAVideoCallError.ErrorCode.SubscriberFailedToJoinRoom, message: data?.description)
+            self.delegate?.onError(error)
         }
         transactionsDict?[transaction] = videoCallTransaction
         var body: [String : Any]? = nil
@@ -431,6 +443,8 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             self.feedDict?.removeValue(forKey: handle!.feedId!)
         }
         videoCallTransaction.error = { data in
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.SubscriberError, errorCode: TSAVideoCallError.ErrorCode.SubsciberFailedToLeaveRoom, message: data?.description)
+            self.delegate?.onError(error)
         }
         transactionsDict?[transaction] = videoCallTransaction
         var message: [String : Any]? = nil
@@ -452,10 +466,11 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         let videoCallTransaction = TSAVideoCallTransaction()
         videoCallTransaction.tid = transaction
         videoCallTransaction.success = { data in
-    
+                
         }
         videoCallTransaction.error = { data in
-     
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.SubscriberError, errorCode: TSAVideoCallError.ErrorCode.PublisherFailedToConfigureMedia, message: data?.description)
+            self.delegate?.onError(error)
         }
         
         let body = [
@@ -537,10 +552,16 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     
     func handleError(_ error: Error?) {
         if let e = error as? WSError {
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.WebSocketError, errorCode: TSAVideoCallError.ErrorCode.WebSocketError, message: e.message)
+            self.delegate?.onError(error)
             print("websocket encountered an error: \(e.message)")
         } else if let e = error {
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.WebSocketError, errorCode: TSAVideoCallError.ErrorCode.WebSocketError, message: e.localizedDescription)
+            self.delegate?.onError(error)
             print("websocket encountered an error: \(e.localizedDescription)")
         } else {
+            let error = TSAVideoCallError(errorType: TSAVideoCallError.ErrorType.WebSocketError, errorCode: TSAVideoCallError.ErrorCode.WebSocketError, message: "Unknown error")
+            self.delegate?.onError(error)
             print("websocket encountered an error")
         }
     }
