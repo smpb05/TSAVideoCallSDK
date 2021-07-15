@@ -13,7 +13,8 @@ Pod::Spec.new do |spec|
   spec.source_files = 'TSAVideoCallSDK/**/*.{swift}'
   spec.static_framework = true
   spec.dependency 'WebRTC'
-  spec.dependency 'Starscream', '~> 4.0.0'
+  spec.dependency 'Alamofire', '~> 5.4'
+  spec.dependency 'Socket.IO-Client-Swift', '16.0.0'
   spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }

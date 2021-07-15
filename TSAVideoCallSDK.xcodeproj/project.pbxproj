@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		036F0AB28151A95FEDDC3AD6 /* Pods_TSAVideoCallSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74647B24BA649899492A163F /* Pods_TSAVideoCallSDK.framework */; };
+		8FE63E0C29743F77D67F431F /* Pods_TSAVideoCallSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8148FC17C04CF82554C2FF5 /* Pods_TSAVideoCallSDK.framework */; };
 		E7048161269D5D5C008F8ACC /* TSAVideoCallError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7048160269D5D5C008F8ACC /* TSAVideoCallError.swift */; };
 		E71B5AF72696B94E000AB3F0 /* TSAVideoCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71B5AF62696B94E000AB3F0 /* TSAVideoCallView.swift */; };
 		E7673F69268EDF8C00D7B3E0 /* TSAVideoCallSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7673F68268EDF8C00D7B3E0 /* TSAVideoCallSocket.swift */; };
@@ -32,9 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		262FB73231A53EFEE235A715 /* Pods-TSAVideoCallSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSAVideoCallSDK.debug.xcconfig"; path = "Target Support Files/Pods-TSAVideoCallSDK/Pods-TSAVideoCallSDK.debug.xcconfig"; sourceTree = "<group>"; };
-		6C8E088F18017D634258EFFC /* Pods-TSAVideoCallSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSAVideoCallSDK.release.xcconfig"; path = "Target Support Files/Pods-TSAVideoCallSDK/Pods-TSAVideoCallSDK.release.xcconfig"; sourceTree = "<group>"; };
-		74647B24BA649899492A163F /* Pods_TSAVideoCallSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TSAVideoCallSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8FA56780A41130E72BD1140 /* Pods-TSAVideoCallSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSAVideoCallSDK.debug.xcconfig"; path = "Target Support Files/Pods-TSAVideoCallSDK/Pods-TSAVideoCallSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		E7048160269D5D5C008F8ACC /* TSAVideoCallError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSAVideoCallError.swift; sourceTree = "<group>"; };
 		E71B5AF62696B94E000AB3F0 /* TSAVideoCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSAVideoCallView.swift; sourceTree = "<group>"; };
 		E74D8FDC269035B70056D909 /* TSAVideoCallResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TSAVideoCallResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +44,8 @@
 		E7673F70268EE07C00D7B3E0 /* RTCSessionDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCSessionDescription.swift; sourceTree = "<group>"; };
 		E7673F74268EE0BF00D7B3E0 /* TSAVideoCallMediaControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSAVideoCallMediaControllers.swift; sourceTree = "<group>"; };
 		E7673F76268EE0D600D7B3E0 /* TSAVideoCallMediaControllersDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSAVideoCallMediaControllersDelegate.swift; sourceTree = "<group>"; };
+		E8148FC17C04CF82554C2FF5 /* Pods_TSAVideoCallSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TSAVideoCallSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF28938006C2178E4F07F496 /* Pods-TSAVideoCallSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TSAVideoCallSDK.release.xcconfig"; path = "Target Support Files/Pods-TSAVideoCallSDK/Pods-TSAVideoCallSDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,28 +60,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036F0AB28151A95FEDDC3AD6 /* Pods_TSAVideoCallSDK.framework in Frameworks */,
+				8FE63E0C29743F77D67F431F /* Pods_TSAVideoCallSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E43CC648E3A7637A783F2A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8148FC17C04CF82554C2FF5 /* Pods_TSAVideoCallSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		289992EAEF8186340F17FC7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				262FB73231A53EFEE235A715 /* Pods-TSAVideoCallSDK.debug.xcconfig */,
-				6C8E088F18017D634258EFFC /* Pods-TSAVideoCallSDK.release.xcconfig */,
+				B8FA56780A41130E72BD1140 /* Pods-TSAVideoCallSDK.debug.xcconfig */,
+				EF28938006C2178E4F07F496 /* Pods-TSAVideoCallSDK.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		A04D4D6138FD067206D1EEB6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				74647B24BA649899492A163F /* Pods_TSAVideoCallSDK.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E7673F55268ED97B00D7B3E0 = {
@@ -90,7 +90,7 @@
 				E7673F60268ED97B00D7B3E0 /* TSAVideoCallSDK */,
 				E7673F5F268ED97B00D7B3E0 /* Products */,
 				289992EAEF8186340F17FC7D /* Pods */,
-				A04D4D6138FD067206D1EEB6 /* Frameworks */,
+				0E43CC648E3A7637A783F2A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,7 +143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7673F65268ED97B00D7B3E0 /* Build configuration list for PBXNativeTarget "TSAVideoCallSDK" */;
 			buildPhases = (
-				76F43F00557E84AB4207578A /* [CP] Check Pods Manifest.lock */,
+				3A8308B42D72DD5E11169715 /* [CP] Check Pods Manifest.lock */,
 				E7673F5A268ED97B00D7B3E0 /* Sources */,
 				E7673F5B268ED97B00D7B3E0 /* Frameworks */,
 				E7673F5C268ED97B00D7B3E0 /* CopyFiles */,
@@ -204,7 +204,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		76F43F00557E84AB4207578A /* [CP] Check Pods Manifest.lock */ = {
+		3A8308B42D72DD5E11169715 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,6 +344,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -398,6 +399,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -407,7 +409,7 @@
 		};
 		E7673F66268ED97B00D7B3E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 262FB73231A53EFEE235A715 /* Pods-TSAVideoCallSDK.debug.xcconfig */;
+			baseConfigurationReference = B8FA56780A41130E72BD1140 /* Pods-TSAVideoCallSDK.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D347KV8V3J;
@@ -421,7 +423,7 @@
 		};
 		E7673F67268ED97B00D7B3E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C8E088F18017D634258EFFC /* Pods-TSAVideoCallSDK.release.xcconfig */;
+			baseConfigurationReference = EF28938006C2178E4F07F496 /* Pods-TSAVideoCallSDK.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D347KV8V3J;
