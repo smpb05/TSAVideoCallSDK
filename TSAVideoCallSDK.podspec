@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.static_framework = true
   spec.dependency 'WebRTC'
   spec.dependency 'Alamofire', '~> 5.4'
-  spec.dependency 'Socket.IO-Client-Swift', '16.0.1'
+  spec.dependency 'Socket.IO-Client-Swift', '16.0.0'
   spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }

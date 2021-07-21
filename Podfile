@@ -7,6 +7,6 @@ target 'TSAVideoCallSDK' do
   	
   # Pods for TSAVideoCallSDK
   pod "WebRTC"
-  pod 'Socket.IO-Client-Swift', '16.0.1'
+  pod 'Socket.IO-Client-Swift', '16.0.0'
   pod 'Alamofire', '~> 5.4'
 end
