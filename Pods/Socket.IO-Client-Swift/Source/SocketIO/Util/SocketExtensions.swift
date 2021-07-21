@@ -87,9 +87,7 @@ extension Dictionary where Key == String, Value == Any {
             return compress ? .compress : nil
         case let ("enableSOCKSProxy", enable as Bool):
             return .enableSOCKSProxy(enable)
-        case let ("version", version as Int):
-            return .version(SocketIOVersion(rawValue: version) ?? .three)
-        case _:
+        default:
             return nil
         }
     }

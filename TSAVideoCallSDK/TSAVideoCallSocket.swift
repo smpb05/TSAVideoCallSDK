@@ -448,7 +448,6 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             "handle_id": handleId
         ]
         }
-        print("answer message \(answerMessage)")
         socket.write(string: jsonToString(json: answerMessage as AnyObject))
     }
     
