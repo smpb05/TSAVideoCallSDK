@@ -57,10 +57,12 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
     var isConnected = false
     
     public weak var delegate: TSAVideoCallSocketDelegate?
+    private var participantId: String
     
-    public init(apiUrl: String, roomId: NSNumber) {
+    public init(apiUrl: String, roomId: NSNumber, participantId: String) {
         self.apiUrl = apiUrl
         self.roomId = roomId
+        self.participantId = participantId
         super.init()
         
         var request = URLRequest(url: URL(string: apiUrl)!)
@@ -138,17 +140,12 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
                             
                         }
                         
-//                        if (plugin["started"] as! String == "ok") {
-//                            let room = plugin["room"] as! NSNumber
-//                            self.delegate?.onSubscriberStarted(room)
-//                        }
-                        
                         let array = plugin["publishers"] as? NSArray
                         if(array != nil && array!.count > 0){
                             for case let publisher as [String:Any] in array! {
                                 let feed:NSNumber = publisher["id"] as! NSNumber
                                 let display:String = publisher["display"] as! String
-                                self.subscriberCreateHandle(feed: feed,display: display)
+                                self.subscriberCreateHandle(feed: feed, display: display)
                             }
                         }
                       
@@ -249,6 +246,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         videoCallTransaction.success = { data in
             let handle = TSAVideoCallHandle()
             handle.handleId = (data?["data"] as! [String: NSNumber])["id"]
+            handle.display = self.participantId
             handle.onJoined = { handle in
                 self.delegate?.onPublisherJoined(handle?.handleId)
             }
@@ -274,7 +272,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         socket.write(string: jsonToString(json: attachMessage as AnyObject))
     }
     
-   public func publisherCreateOffer(_ handleId: NSNumber?, sdp: RTCSessionDescription?) {
+    public func publisherCreateOffer(_ handleId: NSNumber?, sdp: RTCSessionDescription?) {
         let transaction = randomString(withLength: 12)
         let publish = [
             "request": "configure",
@@ -320,7 +318,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
             "request": "join",
             "room": roomId,
             "ptype": "publisher",
-            "display": "Unknown"
+            "display": handle?.display
             ] as [String : Any]
         
         var joinMessage: [String : Any]? = nil
@@ -680,6 +678,10 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         
     }
     
+    public func getDisplayName(handleId: NSNumber) -> String{
+        return handleDict[handleId]?.display ?? "Unknown"
+    }
+    
     func createRoom(_ handle: TSAVideoCallHandle) {
         let transaction = randomString(withLength: 12)
         let videoCallTransaction = TSAVideoCallTransaction()
@@ -723,6 +725,7 @@ public class TSAVideoCallSocket: NSObject, WebSocketDelegate{
         }
         socket.write(string: jsonToString(json: message as AnyObject))
     }
+    
     
     
 }
